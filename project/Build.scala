@@ -1,11 +1,9 @@
+import org.scalajs.sbtplugin.ScalaJSPlugin
+import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt.Keys._
 import sbt._
 import spray.revolver.RevolverPlugin.Revolver
 import spray.revolver.RevolverPlugin.Revolver._
-
-import org.scalajs.sbtplugin.ScalaJSPlugin
-import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
-import org.scalajs.sbtplugin.ScalaJSPlugin.AutoImport.PhantomJSEnv
 
 object Build extends sbt.Build {
 

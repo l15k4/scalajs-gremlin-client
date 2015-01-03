@@ -28,7 +28,7 @@ object GremlinClientSuite extends TestSuites with Implicits {
 
   val client = GremlinClient(Url(WS, "localhost", 8182, Option.empty))
 
-  val generalUseCases = TestSuite {
+  val tests = TestSuite {
 
     "should get a vertex with properties loaded" - {
       client.send[Vector[Vertex]](q("g.v(1)")).asFuture.flatMap {
