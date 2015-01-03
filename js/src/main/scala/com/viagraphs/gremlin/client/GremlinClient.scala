@@ -26,7 +26,8 @@ class GremlinClient(url: Url)(implicit scheduler: Scheduler) extends RxWebSocket
   def send[T](message: js.Dynamic)(implicit r: Reader[ResponseMessage[T]]): Observable[Result[T]] = {
     val uuid = UUID()
     message.updateDynamic(uuid.name)(uuid.value)
-    Observable.create[Result[T]] { o =>
+    Observable.create[Result[T]] { subscriber =>
+      val observer = subscriber.observer
       sendAndReceive(OutMsg(stringify(message)))
         .map { inMsg =>
           parse(inMsg.text)
@@ -35,9 +36,9 @@ class GremlinClient(url: Url)(implicit scheduler: Scheduler) extends RxWebSocket
             readJs[ResponseMessage[T]](json.readJs(dynamic))
         }.foreach { r =>
           r.status.code match {
-            case OKCode => o.onNext(r.result)
-            case EndCode => o.onComplete()
-            case BadQuery => o.onError(new Exception(r.status.message))
+            case OKCode => observer.onNext(r.result)
+            case EndCode => observer.onComplete()
+            case BadQuery => observer.onError(new Exception(r.status.message))
           }
         }
     }

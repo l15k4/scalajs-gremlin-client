@@ -2,11 +2,10 @@ import sbt.Keys._
 import sbt._
 import spray.revolver.RevolverPlugin.Revolver
 import spray.revolver.RevolverPlugin.Revolver._
-import utest.jsrunner.Plugin.internal._
 
-import scala.scalajs.sbtplugin.ScalaJSPlugin.ScalaJSKeys._
-import scala.scalajs.sbtplugin.ScalaJSPlugin._
-import scala.scalajs.sbtplugin.env.phantomjs.PhantomJSEnv
+import org.scalajs.sbtplugin.ScalaJSPlugin
+import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
+import org.scalajs.sbtplugin.ScalaJSPlugin.AutoImport.PhantomJSEnv
 
 object Build extends sbt.Build {
 
@@ -33,24 +32,24 @@ object Build extends sbt.Build {
 
   lazy val js =
     project.in(file("js"))
+      .enablePlugins(ScalaJSPlugin)
       .settings(
         name := "scalajs-gremlin-client",
         organization := "com.viagraphs",
-        version := "0.0.1",
-        scalaVersion := "2.11.2"
+        version := "0.0.2-SNAPSHOT",
+        scalaVersion := "2.11.4"
       )
-      .settings(scalaJSSettings: _*)
+      .settings(scalaJSStage := FastOptStage)
+      .settings(testFrameworks += new TestFramework("utest.runner.Framework"))
       .settings(requiresDOM := true)
-      .settings(postLinkJSEnv := new PhantomJSEnv(autoExit = false))
-      .settings(utestJsSettings: _*)
       .settings(gremlinServerSettings: _*)
-      .settings(test in Test := (test in(Test, fastOptStage)).dependsOn(startGremlinServer).dependsOn(compile in Test).value)
+      .settings(test in Test := (test in Test).dependsOn(startGremlinServer).dependsOn(compile in Test).value)
       .settings(
         libraryDependencies ++= Seq(
-          "org.scala-lang.modules.scalajs" %%% "scalajs-dom" % "0.7-SNAPSHOT",
-          "com.lihaoyi" %%% "upickle" % "0.2.6-SNAPSHOT",
-          "com.viagraphs.reactive-websocket" %%% "client" % "0.0.1-SNAPSHOT",
-          "com.lihaoyi" %%% "utest" % "0.2.6-SNAPSHOT" % "test"
+          "org.scala-js" %%% "scalajs-dom" % "0.7.1-SNAPSHOT",
+          "com.lihaoyi" %%% "upickle" % "0.2.6-M3",
+          "com.viagraphs.reactive-websocket" %%% "client" % "0.0.2-SNAPSHOT",
+          "com.lihaoyi" %%% "utest" % "0.2.5-M3-SNAPSHOT" % "test"
         )
       )
 }

@@ -60,9 +60,9 @@ observable.map(...).filter(...).foreach(...)
 NOTE :
 ----
 
-* It currently depends on scala-js 0.6.0-SNAPSHOT which means you'd need to compile all deps with it unless you're riding cutting edge as I do
 * Just the basic operations are implemented and tested so far - but it is expected that adding new operations will mostly consist in adding a TypeClass evidence  
-* Tests work on real operation systems only, some additional work required on MS Windows
+* Tests work on real operating systems only, some additional work required on MS Windows
+* Requires java 8, as gremlin-server does
 
 
   [1]: http://www.tinkerpop.com/docs/3.0.0-SNAPSHOT/#gremlin-server
