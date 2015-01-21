@@ -45,9 +45,9 @@ object Build extends sbt.Build {
       .settings(
         libraryDependencies ++= Seq(
           "org.scala-js" %%% "scalajs-dom" % "0.7.1-SNAPSHOT",
-          "com.lihaoyi" %%% "upickle" % "0.2.6-M3",
+          "com.lihaoyi" %%% "upickle" % "0.2.6-RC1",
           "com.viagraphs.reactive-websocket" %%% "client" % "0.0.2-SNAPSHOT",
-          "com.lihaoyi" %%% "utest" % "0.2.5-M3-SNAPSHOT" % "test"
+          "com.lihaoyi" %%% "utest" % "0.2.5-RC1" % "test"
         )
       )
 }

@@ -63,6 +63,7 @@ NOTE :
 * Just the basic operations are implemented and tested so far - but it is expected that adding new operations will mostly consist in adding a TypeClass evidence  
 * Tests work on real operating systems only, some additional work required on MS Windows
 * Requires java 8, as gremlin-server does
+* It hasn't been released yet until scala.js 0.6.0 is out
 
 
   [1]: http://www.tinkerpop.com/docs/3.0.0-SNAPSHOT/#gremlin-server
