@@ -31,23 +31,51 @@ object Build extends sbt.Build {
   lazy val js =
     project.in(file("js"))
       .enablePlugins(ScalaJSPlugin)
+      .settings(gremlinServerSettings: _*)
       .settings(
         name := "scalajs-gremlin-client",
         organization := "com.viagraphs",
         version := "0.0.2-SNAPSHOT",
-        scalaVersion := "2.11.4"
-      )
-      .settings(scalaJSStage := FastOptStage)
-      .settings(testFrameworks += new TestFramework("utest.runner.Framework"))
-      .settings(requiresDOM := true)
-      .settings(gremlinServerSettings: _*)
-      .settings(test in Test := (test in Test).dependsOn(startGremlinServer).dependsOn(compile in Test).value)
-      .settings(
+        scalaVersion := "2.11.5",
+        scalaJSStage := FastOptStage,
+        testFrameworks += new TestFramework("utest.runner.Framework"),
+        requiresDOM := true,
+        test in Test := (test in Test).dependsOn(startGremlinServer).dependsOn(compile in Test).value,
         libraryDependencies ++= Seq(
           "org.scala-js" %%% "scalajs-dom" % "0.7.1-SNAPSHOT",
           "com.lihaoyi" %%% "upickle" % "0.2.6-RC1",
           "com.viagraphs.reactive-websocket" %%% "client" % "0.0.2-SNAPSHOT",
           "com.lihaoyi" %%% "utest" % "0.2.5-RC1" % "test"
-        )
+        ),
+        publishMavenStyle := true,
+        publishArtifact in Test := false,
+        pomIncludeRepository := { _ => false },
+        publishTo := {
+          val nexus = "https://oss.sonatype.org/"
+          if (isSnapshot.value)
+            Some("snapshots" at nexus + "content/repositories/snapshots")
+          else
+            Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+        },
+        pomExtra :=
+          <url>https://github.com/viagraphs/scalajs-gremlin-client</url>
+            <licenses>
+              <license>
+                <name>The MIT License (MIT)</name>
+                <url>http://opensource.org/licenses/MIT</url>
+                <distribution>repo</distribution>
+              </license>
+            </licenses>
+            <scm>
+              <url>git@github.com:viagraphs/scalajs-gremlin-client.git</url>
+              <connection>scm:git:git@github.com:viagraphs/scalajs-gremlin-client.git</connection>
+            </scm>
+            <developers>
+              <developer>
+                <id>l15k4</id>
+                <name>Jakub Liska</name>
+                <email>liska.jakub@gmail.com</email>
+              </developer>
+            </developers>
       )
 }
