@@ -3,6 +3,7 @@ package com.viagraphs.gremlin.client
 import upickle.Aliases._
 import upickle.Js.Obj
 import upickle._
+import scala.language.implicitConversions
 
 import scala.scalajs.js
 

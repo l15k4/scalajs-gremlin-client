@@ -37,6 +37,12 @@ object Build extends sbt.Build {
         organization := "com.viagraphs",
         version := "0.0.2-SNAPSHOT",
         scalaVersion := "2.11.5",
+        scalacOptions ++= Seq(
+          "-unchecked", "-deprecation", "-feature", "-Xfatal-warnings",
+          "-Xlint", "-Xfuture",
+          "-Yinline-warnings", "-Ywarn-adapted-args", "-Ywarn-inaccessible",
+          "-Ywarn-nullary-override", "-Ywarn-nullary-unit", "-Yno-adapted-args"
+        ),
         scalaJSStage := FastOptStage,
         testFrameworks += new TestFramework("utest.runner.Framework"),
         requiresDOM := true,
