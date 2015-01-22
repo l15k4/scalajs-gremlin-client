@@ -1,15 +1,16 @@
-scalajs-gremlin-client
-==============
+#scalajs-gremlin-client
 
 Allows your browser applications to communicate with [Gremlin Server](1) via [reactive-websocket](2) thanks to [Monifu](3) and [uPickle](4).
+
+* dependency : `"com.viagraphs" %%% "scalajs-gremlin-client" % "0.0.2-SNAPSHOT"`
+* Scala.js version : 0.6.0-RC1
 
 **Mainly it approaches** : 
 * gremlin's turing completeness by letting its users deal with it themselves in their application, thanks to Scala's Type Classes and excellent serialization library [uPickle](4). Any new type of response might be added by user himself in his application by adding an evidence for a Reader type class like this. Found a new kind of response/request? Add it to your app and submit a feature request :-)
 * gremlin server response streaming which is handled the Rx way thanks to the awesome [Monifu](3) project
 
 
-Testing
--------
+##Testing
 
 This expects gremlin-sever be already running, please see sbt settings :
 ```scala
@@ -21,8 +22,7 @@ This starts gremlin-server before running a test suite if you have `gremlinServe
 > js/test
 ```
 
-Usage
------
+##Usage
 
 ```scala
 // requests are built using js.Dynamic literals 
@@ -57,8 +57,7 @@ observable.map(...).filter(...).foreach(...)
 * Please see GremlinClientSuite as a source of inspiration
 * As gremlin language is turing complete, it is inevitable that you'll find new and new return types that are not supported. In that case you need to add corresponding uPickle Reader to Implicits
 
-NOTE :
-----
+###NOTE :
 
 * Just the basic operations are implemented and tested so far - but it is expected that adding new operations will mostly consist in adding a TypeClass evidence  
 * Tests work on real operating systems only, some additional work required on MS Windows
