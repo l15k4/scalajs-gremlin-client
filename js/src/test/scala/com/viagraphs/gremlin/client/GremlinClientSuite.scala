@@ -8,8 +8,9 @@ import scala.collection.mutable.ArrayBuffer
 import scala.concurrent.Future
 import scala.scalajs.js.Dynamic.{literal => lit}
 
-object GremlinClientSuite extends TestSuites with Implicits {
+object GremlinClientSuite extends TestSuites {
   implicit val scheduler = Scheduler()
+  import Implicits._
 
   def q(query: String, batchSize: Int = 10) =
     lit(

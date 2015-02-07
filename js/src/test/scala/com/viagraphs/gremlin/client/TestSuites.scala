@@ -5,6 +5,7 @@ import utest.framework.TestSuite
 import scala.collection.mutable.ArrayBuffer
 
 abstract class TestSuites extends TestSuite {
+  import Implicits._
 
   val tinkerGraphVertices =
     Vector(

@@ -8,7 +8,7 @@ import upickle._
 import scala.scalajs.js
 import scala.scalajs.js.JSON._
 
-class GremlinClient(url: Url)(implicit scheduler: Scheduler) extends RxWebSocketClient(url) with Implicits {
+class GremlinClient(url: Url)(implicit scheduler: Scheduler) extends RxWebSocketClient(url) {
 
   private def parse(s: String): js.Dynamic = {
     try js.JSON.parse(s) catch {

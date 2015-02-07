@@ -7,7 +7,7 @@ import scala.language.implicitConversions
 
 import scala.scalajs.js
 
-trait Implicits {
+object Implicits {
   def validate[T](name: String)(pf: PartialFunction[Js.Value, T]) = Internal.validate(name)(pf)
   /** for constructing messages from dynamic literals without having to deconstructing objects */
   implicit def NamedStringValueToTuple[N <: Named with Valued[String]](x: N): (String, js.Any) = (x.name, x.value)
