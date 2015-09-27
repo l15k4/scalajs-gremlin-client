@@ -3,8 +3,8 @@ package com.viagraphs.gremlin.client
 import com.viagraphs.websocket._
 import monifu.concurrent.Scheduler
 import monifu.reactive.Observable
-import upickle._
-
+import upickle.{json, Invalid}
+import upickle.legacy._
 import scala.scalajs.js
 import scala.scalajs.js.JSON._
 
@@ -26,8 +26,7 @@ class GremlinClient(url: Url)(implicit scheduler: Scheduler) extends RxWebSocket
   def send[T](message: js.Dynamic)(implicit r: Reader[ResponseMessage[T]]): Observable[Result[T]] = {
     val uuid = UUID()
     message.updateDynamic(uuid.name)(uuid.value)
-    Observable.create[Result[T]] { subscriber =>
-      val observer = subscriber.observer
+    Observable.create[Result[T]] { observer =>
       sendAndReceive(OutMsg(stringify(message)))
         .map { inMsg =>
           parse(inMsg.text)

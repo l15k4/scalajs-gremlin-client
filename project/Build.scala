@@ -35,8 +35,8 @@ object Build extends sbt.Build {
       .settings(
         name := "scalajs-gremlin-client",
         organization := "com.viagraphs",
-        version := "0.0.2-SNAPSHOT",
-        scalaVersion := "2.11.5",
+        version := "0.0.3-SNAPSHOT",
+        scalaVersion := "2.11.7",
         scalacOptions ++= Seq(
           "-unchecked", "-deprecation", "-feature", "-Xfatal-warnings",
           "-Xlint", "-Xfuture",
@@ -48,10 +48,10 @@ object Build extends sbt.Build {
         requiresDOM := true,
         test in Test := (test in Test).dependsOn(startGremlinServer).dependsOn(compile in Test).value,
         libraryDependencies ++= Seq(
-          "org.scala-js" %%% "scalajs-dom" % "0.7.1-SNAPSHOT",
-          "com.lihaoyi" %%% "upickle" % "0.2.6-RC1",
-          "com.viagraphs.reactive-websocket" %%% "client" % "0.0.2-SNAPSHOT",
-          "com.lihaoyi" %%% "utest" % "0.2.5-RC1" % "test"
+          "org.scala-js" %%% "scalajs-dom" % "0.8.1",
+          "com.lihaoyi" %%% "upickle" % "0.3.6",
+          "com.viagraphs" %%% "reactive-websocket-client" % "0.0.3-SNAPSHOT",
+          "com.lihaoyi" %%% "utest" % "0.3.1" % "test"
         ),
         publishMavenStyle := true,
         publishArtifact in Test := false,
