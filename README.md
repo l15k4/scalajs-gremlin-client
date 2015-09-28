@@ -2,7 +2,7 @@
 
 Allows your browser applications to communicate with [Gremlin Server](1) via [reactive-websocket](2) thanks to [Monifu](3) and [uPickle](4).
 
-* dependency : `"com.viagraphs" %%% "scalajs-gremlin-client" % "0.0.2"`
+* dependency : `"com.viagraphs" %%% "scalajs-gremlin-client" % "0.0.3-SNAPSHOT"`
 * Scala.js version : `0.6.5`
 
 **Mainly it approaches** : 
