@@ -1,8 +1,8 @@
-package com.viagraphs.gremlin.client
+package com.pragmaxim.gremlin.client
 
-import com.viagraphs.websocket._
-import monifu.concurrent.Scheduler
-import monifu.reactive.Observable
+import com.pragmaxim.websocket._
+import monix.execution.Scheduler
+import monix.reactive.Observable
 import upickle.{json, Invalid}
 import upickle.legacy._
 import scala.scalajs.js

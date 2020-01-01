@@ -1,4 +1,4 @@
-package com.viagraphs.gremlin.client
+package com.pragmaxim.gremlin.client
 
 import scala.scalajs.js.Dynamic
 

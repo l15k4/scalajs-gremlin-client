@@ -1,6 +1,6 @@
-package com.viagraphs.gremlin.client
+package com.pragmaxim.gremlin.client
 
-import com.viagraphs.websocket._
+import com.pragmaxim.websocket._
 import monifu.concurrent.Scheduler
 import utest._
 
